@@ -12,10 +12,20 @@
     <h3>Listado</h3>
     <ul>
       @for( character of characters(); track character.id; let idx = $index ){
+       @if(character.power > 5000){
         <li>
           <span>{{ idx +1 }} - {{ character.name }}</span>
-          <strong class="text-danger">  ({{ character.power }})</strong>
+        <strong
+             [class.text-danger] = "character.power >= 9000" [class.text-primary] = "character.power < 9000"
+            >
+        ({{ character.power }})
+        </strong>
         </li>
+       }@else{
+        <li>
+          <span>El poder de {{ character.name }} es muy bajo</span>
+        </li>
+       }
       }
     </ul>
   </div>
