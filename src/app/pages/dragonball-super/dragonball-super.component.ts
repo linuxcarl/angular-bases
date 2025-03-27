@@ -1,5 +1,6 @@
 import { NgClass } from '@angular/common';
 import { Component, computed, signal } from '@angular/core';
+import { CharacterListComponent } from '../../components/dragonball/character-list/character-list.component';
 
 interface Character{
   id: number;
@@ -9,7 +10,7 @@ interface Character{
 
 @Component({
   selector: 'app-super-dragonball',
-  imports: [],
+  imports: [CharacterListComponent],
   templateUrl: './dragonball-super.component.html',
 })
 export class DragonballSuperComponent {
