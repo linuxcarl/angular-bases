@@ -1,33 +1,24 @@
 import { NgClass } from '@angular/common';
 import { Component, computed, signal } from '@angular/core';
 import { CharacterListComponent } from '../../components/dragonball/character-list/character-list.component';
-
-interface Character{
-  id: number;
-  name: string;
-  power: number;
-}
+import { CharacterAddComponent } from '../../components/dragonball/character-add/character-add.component';
+import { Character } from '../../interfaces/character.interface';
 
 @Component({
   selector: 'app-super-dragonball',
-  imports: [CharacterListComponent],
+  imports: [CharacterListComponent, CharacterAddComponent],
   templateUrl: './dragonball-super.component.html',
 })
 export class DragonballSuperComponent {
- name= signal<string>('');
- power = signal<number>(0);
+  name= signal<string>('');
+  power = signal<number>(0);
   characters= signal<Character[]>([
     {id: 1, name: 'Goku', power: 10000},
     {id: 2, name: 'Master Roshi', power: 1000},
   ])
 
-  addCharacter(){
-    if(!this.name() || !this.power()) return;
-
-    const id = this.characters.length + 1;
-    const newCharacter = {id, name: this.name(), power: this.power()};
-    this.characters.update((list) => [...list,newCharacter] );
-    this.resetFields();
+  addCharacter(character: Character){
+    this.characters.update((list) => [...list, character]);
   }
 
   resetFields(){
