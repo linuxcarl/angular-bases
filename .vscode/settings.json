@@ -4,5 +4,6 @@
             "externalTemplate": true,
             "skipStyle": true
         }
-    }
+    },
+    "typescript.tsdk": "node_modules/typescript/lib"
 }
